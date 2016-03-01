@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <link href="/c3-0.4.10/c3.css" rel="stylesheet" type="text/css">
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="/c3-0.4.10/c3.min.js"></script>
+</head>
+<body>
+    <h2 align="center">Elderly in Sweden</h3>
+    <div id="chart"></div>
+    <script type="text/javascript">
+
+    var chart = c3.generate({
+    bindto: '#chart',
+    size: {
+        height: 600,
+        width: 1180
+    },
+    data: {
+      x: 'x',
+      columns: [
+        ['x', '1998-01-01','2000-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01','2014-01-01' ],
+        ['data1', 68.5, 79.3, 95.9, 98.8, 101.7, 104.9, 109.2],
+        ['data2', 1526196, 1530887, 1737246, 1784668, 1828283, 1872207, 1912884],
+        //['data2', 7497967, 8081229, 8317937, 8590630, 8882792, 9415570, 9747355]
+        ['data3', 7064434, 7351842, 7678324, 7698187, 7727610, 7772657, 7834471]
+      ],
+      colors: {
+            data1: '#ff0000',
+            data3: '#A4EAA1',
+            data2: '#656665'
+      },
+      names: {
+        data1: 'Cost of Elderly Care',
+        data3: '0-65',
+        data2: '65+'
+      },
+      axes: {
+        data3: 'y2',
+        data2: 'y2'
+      },
+      types: {
+        data2: 'bar',
+        data3: 'bar' // ADD
+      },
+      groups: [
+            ['data3', 'data2']
+        ]
+    },
+    bar: {
+        width: {
+            ratio: 0.28 // this makes bar width 50% of length between ticks
+        }
+        // or
+        //width: 100 // this makes bar width 100px
+    },
+    axis: {
+      x : {
+            type : 'timeseries',
+            tick: {
+                format: function (x) { return x.getFullYear(); }
+            }
+      },
+      y: {
+        label: {
+          text: 'SEK (in billion)',
+          position: 'outer-middle'
+        }
+      },
+      y2: {
+        show: true,
+        label: {
+          text: 'Population',
+          position: 'outer-middle'
+        }
+      }
+    },
+    grid: {
+        y: {
+            show: true
+        }
+    }
+});
+
+
+    //chart.resize({height:400, width:800})
+    </script>
+    <h3>Source: <a href="http://www.sc.se/">Statistics Sweden</a></h3>
+
+    
+</body>
+</html>
